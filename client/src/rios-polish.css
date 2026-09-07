@@ -96,3 +96,49 @@
 @media (max-width: 899px) {
   .desktop-shell::before, .desktop-shell::after { display: none; }
 }
+
+/* Smooth, gently staggered slide-in for dock and grid icons on mount. */
+@keyframes tileSlideIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.desktop-dock .app-tile,
+.mobile-dock .app-tile,
+.mobile-app-grid .app-tile,
+.library-grid .app-tile {
+  animation: tileSlideIn .45s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.desktop-dock .app-tile:nth-child(1), .mobile-dock .app-tile:nth-child(1), .mobile-app-grid .app-tile:nth-child(1), .library-grid .app-tile:nth-child(1) { animation-delay: .02s; }
+.desktop-dock .app-tile:nth-child(2), .mobile-dock .app-tile:nth-child(2), .mobile-app-grid .app-tile:nth-child(2), .library-grid .app-tile:nth-child(2) { animation-delay: .06s; }
+.desktop-dock .app-tile:nth-child(3), .mobile-dock .app-tile:nth-child(3), .mobile-app-grid .app-tile:nth-child(3), .library-grid .app-tile:nth-child(3) { animation-delay: .10s; }
+.desktop-dock .app-tile:nth-child(4), .mobile-dock .app-tile:nth-child(4), .mobile-app-grid .app-tile:nth-child(4), .library-grid .app-tile:nth-child(4) { animation-delay: .14s; }
+.desktop-dock .app-tile:nth-child(5), .mobile-app-grid .app-tile:nth-child(5), .library-grid .app-tile:nth-child(5) { animation-delay: .18s; }
+.desktop-dock .app-tile:nth-child(6), .mobile-app-grid .app-tile:nth-child(6), .library-grid .app-tile:nth-child(6) { animation-delay: .22s; }
+.desktop-dock .app-tile:nth-child(7), .library-grid .app-tile:nth-child(7) { animation-delay: .26s; }
+.desktop-dock .app-tile:nth-child(8), .library-grid .app-tile:nth-child(8) { animation-delay: .30s; }
+.library-grid .app-tile:nth-child(9) { animation-delay: .34s; }
+.library-grid .app-tile:nth-child(10) { animation-delay: .38s; }
+
+/* Windows glide smoothly to their new position whenever they're brought to
+   front or repositioned programmatically; dragging itself stays instant via
+   an inline style override so the cursor never feels laggy (see Home.tsx). */
+.desktop-window {
+  transition: box-shadow .2s ease;
+}
+.desktop-window:not(.desktop-window--dragging) {
+  transition: transform .28s cubic-bezier(.16, 1, .3, 1), box-shadow .2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .desktop-dock .app-tile,
+  .mobile-dock .app-tile,
+  .mobile-app-grid .app-tile,
+  .library-grid .app-tile {
+    animation: none;
+  }
+  .desktop-window:not(.desktop-window--dragging) {
+    transition: none;
+  }
+}
