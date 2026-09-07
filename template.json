@@ -1,0 +1,16 @@
+{
+  "name": "rios-os-simulation",
+  "displayName": "RI/OS",
+  "description": "A responsive personal-portfolio operating-system simulation.",
+  "framework": "vite-react-ts",
+  "styling": "tailwindcss-v4",
+  "entry": {
+    "html": "client/index.html",
+    "script": "client/src/main.tsx"
+  },
+  "deploy": {
+    "target": "vercel",
+    "buildCommand": "npm run build",
+    "outputDirectory": "dist"
+  }
+}
