@@ -1,0 +1,98 @@
+/* Gallery OS refinement: recurring orbital geometry and a visible desktop workspace anchor. */
+.desktop-shell::before,
+.desktop-shell::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.desktop-shell::before {
+  width: 530px;
+  height: 530px;
+  left: -270px;
+  bottom: -346px;
+  border: 1px solid rgba(221, 206, 149, .16);
+  box-shadow: 0 0 0 26px rgba(221, 206, 149, .028), 0 0 0 68px rgba(221, 206, 149, .02);
+}
+
+.desktop-shell::after {
+  width: 230px;
+  height: 230px;
+  right: 23%;
+  bottom: 43px;
+  border: 1px solid rgba(207, 191, 130, .14);
+  box-shadow: 0 0 0 16px rgba(207, 191, 130, .028);
+}
+
+.desktop-overview > article {
+  position: relative;
+  padding: 19px 25px 21px;
+  margin: -19px -25px;
+  border-left: 1px solid rgba(225, 213, 163, .34);
+  background: linear-gradient(90deg, rgba(15, 15, 13, .28), transparent 82%);
+}
+
+.desktop-overview > article::after {
+  content: "ACTIVE CANVAS  /  03 ROOMS OPEN";
+  display: block;
+  width: fit-content;
+  margin-top: 28px;
+  padding: 6px 9px;
+  color: rgba(230, 217, 166, .7);
+  border: 1px solid rgba(230, 217, 166, .15);
+  background: rgba(12, 12, 10, .3);
+  border-radius: 100px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .14em;
+}
+
+.desktop-overview > aside::before,
+.desktop-overview > aside::after {
+  content: "";
+  position: absolute;
+  border: 1px solid rgba(224, 206, 142, .13);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.desktop-overview > aside::before { inset: -36px 16px 6px -33px; }
+.desktop-overview > aside::after { inset: 43px -22px -48px 45px; border-color: rgba(184, 204, 192, .1); }
+
+.desktop-overview > aside > * { box-shadow: 0 18px 50px rgba(0,0,0,.13), inset 0 1px rgba(255,255,255,.13), inset 0 0 0 1px rgba(231, 215, 160, .035); }
+.app-icon::after { content:""; position:absolute; inset:14%; border:1px solid rgba(255,255,255,.23); border-radius:50%; opacity:.42; pointer-events:none; }
+.app-icon--gold::after { border-color:rgba(89,71,27,.27); }
+
+.desktop-dock {
+  position: absolute;
+  bottom: 22px;
+  min-width: 535px;
+  justify-content: center;
+  padding: 10px 14px;
+  background: linear-gradient(145deg, rgba(41, 40, 34, .73), rgba(10, 10, 9, .71));
+  border-color: rgba(235, 222, 168, .21);
+}
+
+.desktop-dock::before {
+  content: "AVAILABLE ROOMS";
+  position: absolute;
+  top: -24px;
+  left: 15px;
+  color: rgba(246, 237, 205, .5);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .16em;
+}
+
+.desktop-dock .app-icon { box-shadow: inset 0 1px rgba(255,255,255,.56), inset 0 -10px 24px rgba(0,0,0,.08), 0 7px 16px rgba(0,0,0,.29), 0 0 0 1px rgba(236, 218, 154, .06); }
+.desktop-dock .app-tile:hover .app-icon { box-shadow: inset 0 1px rgba(255,255,255,.62), inset 0 -10px 24px rgba(0,0,0,.08), 0 12px 22px rgba(0,0,0,.38), 0 0 0 1px rgba(236, 218, 154, .2); }
+.os-page--light .desktop-overview > article { background: linear-gradient(90deg, rgba(255,255,255,.43), transparent 82%); border-color: rgba(108, 91, 41, .32); }
+.os-page--light .desktop-overview > article::after { color: rgba(88,71,27,.7); background: rgba(255,255,255,.38); border-color: rgba(88,71,27,.14); }
+.os-page--light .desktop-dock { background: linear-gradient(145deg, rgba(255,255,255,.79), rgba(235,232,221,.74)); border-color: rgba(83,70,35,.18); }
+.os-page--light .desktop-dock::before { color: rgba(65,55,29,.55); }
+
+@media (max-width: 899px) {
+  .desktop-shell::before, .desktop-shell::after { display: none; }
+}
